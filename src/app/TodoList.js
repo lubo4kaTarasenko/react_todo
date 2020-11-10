@@ -10,7 +10,20 @@ export default class TodoList extends React.Component {
   }
 
   add() {
-    console.log('add')
+    this.update()
+  }
+
+  read() {
+    let todo = document.getElementById('todo').value   
+    return todo
+  }
+
+  update() {
+    this.state.items.push(this.read())
+    this.setState({
+      items: this.state.items
+    })
+   
   }
 
   render() {
