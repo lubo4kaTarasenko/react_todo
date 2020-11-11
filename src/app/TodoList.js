@@ -29,6 +29,38 @@ export default class TodoList extends React.Component {
       )
   }
 
+  readNewItem(){
+    let newItem = document.getElementById('todo')
+    let newItemText = newItem.value
+    let newItemColor = 'red'
+    let newItemCheck = false
+    let item = {
+      text: newItemText,
+      color: newItemColor,
+      check: newItemCheck
+    }
+    return item
+  }
+
+  create(e){
+    console.log(e)
+    fetch("http://localhost:3001/api/items",{
+    "method": "POST",
+    "body": JSON.stringify({
+      text: e.text,
+      color: e.color,
+      check: e.check
+    })
+   })
+   .then(response => response.json())
+   .then(response => {
+     console.log(response)
+   })
+   .catch(err => {
+     console.log(err);
+   });
+  }
+
   renderList() {
     const { error, isLoaded, items } = this.state;
 
@@ -56,7 +88,7 @@ export default class TodoList extends React.Component {
           <div>
             <label for='new'>Enter what to do</label>
             <input type='text' className='task' id='todo'/>
-            <button id='add' /*onClick={ ()=>{ this.add() } }*/> ADD </button>
+            <button id='add' onClick={ ()=>{ this.create(this.readNewItem()) } }> ADD </button>
           </div>
           <div id='list'>
             <h1>Your todos</h1>
