@@ -22,9 +22,10 @@ export default class TodoList extends React.Component {
     this.state.items.push(this.read())
     this.setState({
       items: this.state.items
-    })
-   
+    })   
   }
+
+
 
   render() {
     return (
@@ -36,7 +37,15 @@ export default class TodoList extends React.Component {
         </div>
         <div id='list'>
           <h1>Your todos</h1>
-          { JSON.stringify(this.state.items) }
+          <ul>
+          {
+            this.state.items.map((e)=>{
+              return (
+                <li>{e}</li>
+              )
+            })
+          }
+          </ul>
         </div>
       </div>
     );
