@@ -11,22 +11,26 @@ export default class TodoList extends React.Component {
     }
   }
   componentDidMount() {
+    this.reloadList()
+  }
+
+  reloadList(){
     fetch("http://localhost:3001/api/items")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.items
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          items: result.items
+        });
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
   }
 
   readNewItem(){
@@ -54,6 +58,7 @@ export default class TodoList extends React.Component {
    })
    .then(response => response.json())
    .then(response => {
+     this.reloadList()
      console.log(response)
    })
    .catch(err => {
