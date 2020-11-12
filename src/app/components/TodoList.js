@@ -1,3 +1,5 @@
+import TodoApi from '../services/TodoApi';
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -15,9 +17,7 @@ export default class TodoList extends React.Component {
   }
 
   reloadList(){
-    fetch("http://localhost:3001/api/items")
-    .then(res => res.json())
-    .then(
+    new TodoApi().read_fetch().then(
       (result) => {
         this.setState({
           isLoaded: true,
@@ -47,58 +47,24 @@ export default class TodoList extends React.Component {
   }
 
   create(e){
-    console.log(e)
-    fetch("http://localhost:3001/api/items",{
-    "method": "POST",
-    "body": JSON.stringify({
-      text: e.text,
-      color: e.color,
-      check: e.check
+    new TodoApi().create_fetch(e).then(response => {
+      this.reloadList()
+      console.log(response)
     })
-   })
-   .then(response => response.json())
-   .then(response => {
-     this.reloadList()
-     console.log(response)
-   })
-   .catch(err => {
-     console.log(err);
-   });
   }
 
   update(itemText, itemCheck, itemId){
-   // console.log(item)
-    fetch("http://localhost:3001/api/items",{
-    "method": "PUT",
-    "body": JSON.stringify({
-      id: itemId,
-      text: itemText,
-      color: 'red',
-      check: itemCheck
+   new TodoApi().update_fetch(itemText, itemCheck, itemId).then(response => {
+      this.reloadList()
+      console.log(response)
     })
-   })
-   .then(response => response.json())
-   .then(response => {
-     this.reloadList()
-     console.log(response)
-   })
-   .catch(err => {
-     console.log(err);
-   });
   }
 
   delete(id){
-    console.log(id)
-    fetch(`http://localhost:3001/api/items?id=${id}`,{
-      "method": "DELETE"})
-     .then(response => response.json())
-     .then(response => {
-       this.reloadList()
-       console.log(response)
-     })
-     .catch(err => {
-       console.log(err);
-     });
+    new TodoApi().delete_fetch(id).then(response => {
+      this.reloadList()
+      console.log(response)
+    })
   }
   
 

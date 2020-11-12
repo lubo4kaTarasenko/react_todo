@@ -1,4 +1,4 @@
-import TodoList from './app/TodoList';
+import TodoList from './app/components/TodoList';
 
 var React = require('react');
 var ReactDOM = require('react-dom');
