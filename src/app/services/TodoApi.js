@@ -1,6 +1,6 @@
 export default class TodoApi{
 
-  create_fetch(e){
+  createFetch(e){
     return fetch("http://localhost:3001/api/items",{
       "method": "POST",
       "body": JSON.stringify({
@@ -15,12 +15,12 @@ export default class TodoApi{
      });
   }
 
-  read_fetch(){
+  readFetch(){
     return fetch("http://localhost:3001/api/items")
     .then(res => res.json())
   }
 
-  update_fetch(itemText, itemCheck, itemId){
+  updateFetch(itemText, itemCheck, itemId){
     return fetch("http://localhost:3001/api/items",{
     "method": "PUT",
     "body": JSON.stringify({
@@ -36,7 +36,7 @@ export default class TodoApi{
    });
   }
 
-  delete_fetch(id){
+  deleteFetch(id){
     return fetch(`http://localhost:3001/api/items?id=${id}`,{
       "method": "DELETE"})
      .then(response => response.json())

@@ -17,7 +17,7 @@ export default class TodoList extends React.Component {
   }
 
   reloadList(){
-    new TodoApi().read_fetch().then(
+    new TodoApi().readFetch().then(
       (result) => {
         this.setState({
           isLoaded: true,
@@ -46,22 +46,22 @@ export default class TodoList extends React.Component {
     return item
   }
 
-  create(e){
-    new TodoApi().create_fetch(e).then(response => {
+  createNewItem(e){
+    new TodoApi().createFetch(e).then(response => {
       this.reloadList()
       console.log(response)
     })
   }
 
-  update(itemText, itemCheck, itemId){
-   new TodoApi().update_fetch(itemText, itemCheck, itemId).then(response => {
+  updateItem(itemText, itemCheck, itemId){
+   new TodoApi().updateFetch(itemText, itemCheck, itemId).then(response => {
       this.reloadList()
       console.log(response)
     })
   }
 
-  delete(id){
-    new TodoApi().delete_fetch(id).then(response => {
+  deleteItem(id){
+    new TodoApi().deleteFetch(id).then(response => {
       this.reloadList()
       console.log(response)
     })
@@ -83,12 +83,12 @@ export default class TodoList extends React.Component {
               <input defaultValue={item.text} onBlur={(event)=>{
                 event.preventDefault()
                 event.stopPropagation()
-                this.update(event.target.value, item.check, item.id)
+                this.updateItem(event.target.value, item.check, item.id)
                 }} className={ `todoitem ${item.color}` }/>
               <input type="checkbox" checked={item.check} onChange={(event)=>{
-                this.update(item.text, event.target.checked, item.id)
+                this.updateItem(item.text, event.target.checked, item.id)
                }} />
-              <button className='delete' onClick={()=>{this.delete(item.id)}}>X</button>
+              <button className='delete' onClick={()=>{this.deleteItem(item.id)}}>X</button>
             </li>
           ))}
         </ul>
@@ -102,7 +102,7 @@ export default class TodoList extends React.Component {
           <div>
             <label for='new'>Enter what to do</label>
             <input type='text' className='task' id='todo'/>
-            <button id='add' onClick={ ()=>{ this.create(this.readNewItem()) } }> ADD </button>
+            <button id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </button>
           </div>
           <div id='list'>
             <h1>Your todos</h1>
