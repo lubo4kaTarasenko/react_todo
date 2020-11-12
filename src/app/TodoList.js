@@ -66,6 +66,26 @@ export default class TodoList extends React.Component {
    });
   }
 
+  update(itemText, itemCheck, itemId){
+   // console.log(item)
+    fetch("http://localhost:3001/api/items",{
+    "method": "PUT",
+    "body": JSON.stringify({
+      id: itemId,
+      text: itemText,
+      color: 'red',
+      check: itemCheck
+    })
+   })
+   .then(response => response.json())
+   .then(response => {
+     this.reloadList()
+     console.log(response)
+   })
+   .catch(err => {
+     console.log(err);
+   });
+  }
 
   delete(id){
     console.log(id)
@@ -94,7 +114,11 @@ export default class TodoList extends React.Component {
         <ul id='todolist'>
           {items.map(item => (
             <li key={item.id}>
-              <input value={item.text} className={ `todoitem ${item.color}` }/>
+              <input defaultValue={item.text} onBlur={(event)=>{
+                event.preventDefault()
+                event.stopPropagation()
+                this.update(event.target.value, item.check, item.id)
+                }} className={ `todoitem ${item.color}` }/>
               <input type="checkbox" checked={item.check} />
               <button className='delete' onClick={()=>{this.delete(item.id)}}>X</button>
             </li>
