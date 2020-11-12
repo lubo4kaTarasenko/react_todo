@@ -119,7 +119,9 @@ export default class TodoList extends React.Component {
                 event.stopPropagation()
                 this.update(event.target.value, item.check, item.id)
                 }} className={ `todoitem ${item.color}` }/>
-              <input type="checkbox" checked={item.check} />
+              <input type="checkbox" checked={item.check} onChange={(event)=>{
+                this.update(item.text, event.target.checked, item.id)
+               }} />
               <button className='delete' onClick={()=>{this.delete(item.id)}}>X</button>
             </li>
           ))}
