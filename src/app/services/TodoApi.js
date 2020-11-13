@@ -20,13 +20,13 @@ export default class TodoApi{
     .then(res => res.json())
   }
 
-  updateFetch(itemText, itemCheck, itemId){
+  updateFetch(itemText, itemCheck, itemId, itemColor){
     return fetch("http://localhost:3001/api/items",{
     "method": "PUT",
     "body": JSON.stringify({
       id: itemId,
       text: itemText,
-      color: 'red',
+      color: itemColor,
       check: itemCheck
     })
    })

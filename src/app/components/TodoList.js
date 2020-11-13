@@ -36,7 +36,7 @@ export default class TodoList extends React.Component {
   readNewItem(){
     let newItem = document.getElementById('todo')
     let newItemText = newItem.value
-    let newItemColor = 'red'
+    let newItemColor = document.getElementById('addColor').value
     let newItemCheck = false
     let item = {
       text: newItemText,
@@ -53,8 +53,8 @@ export default class TodoList extends React.Component {
     })
   }
 
-  updateItem(itemText, itemCheck, itemId){
-   new TodoApi().updateFetch(itemText, itemCheck, itemId).then(response => {
+  updateItem(itemText, itemCheck, itemId, itemColor){
+   new TodoApi().updateFetch(itemText, itemCheck, itemId, itemColor).then(response => {
       this.reloadList()
       console.log(response)
     })
@@ -83,11 +83,21 @@ export default class TodoList extends React.Component {
               <input defaultValue={item.text} onBlur={(event)=>{
                 event.preventDefault()
                 event.stopPropagation()
-                this.updateItem(event.target.value, item.check, item.id)
+                this.updateItem(event.target.value, item.check, item.id, item.color)
                 }} className={ `todoitem ${item.color}` }/>
               <input type="checkbox" checked={item.check} onChange={(event)=>{
-                this.updateItem(item.text, event.target.checked, item.id)
+                this.updateItem(item.text, event.target.checked, item.id, item.color)
                }} />
+             <select id="changeColor" onChange={(event)=>{
+                this.updateItem(item.text, item.check, item.id, event.target.value )
+             }}>
+                <option className='default'>default</option>
+                <option className='red'>red</option>
+                <option className='green'>green</option>
+                <option className='blue'>blue</option>
+                <option className='purpure'>purpure</option>
+                <option className='yellow'>yellow</option>
+              </select>
               <button className='delete' onClick={()=>{this.deleteItem(item.id)}}>X</button>
             </li>
           ))}
@@ -102,6 +112,14 @@ export default class TodoList extends React.Component {
           <div>
             <label for='new'>Enter what to do</label>
             <input type='text' className='task' id='todo'/>
+            <select id="addColor">
+                <option className='default'>default</option>
+                <option className='red'>red</option>
+                <option className='green'>green</option>
+                <option className='blue'>blue</option>
+                <option className='purpure'>purpure</option>
+                <option className='yellow'>yellow</option>
+            </select>
             <button id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </button>
           </div>
           <div id='list'>

@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #8675a9;
+  color: white;
+  padding: 5%;
 }
 
 code {
@@ -13,6 +16,7 @@ code {
 }
 .todoitem{
   border: none;
+  font-size: 1rem;
 }
 .delete{
   border: none;
@@ -21,3 +25,19 @@ code {
   background: none;
 }
 
+.red{
+  background: #ff6666;
+
+}
+.green{
+  background: #66ff66;
+}
+.blue{
+  background: #668cff;
+}
+.purpure{
+  background: #d98cd9;
+}
+.yellow{
+  background:#ffff66;
+}
