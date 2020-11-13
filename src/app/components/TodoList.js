@@ -88,7 +88,7 @@ export default class TodoList extends React.Component {
               <input type="checkbox" checked={item.check} onChange={(event)=>{
                 this.updateItem(item.text, event.target.checked, item.id, item.color)
                }} />
-             <select id="changeColor" onChange={(event)=>{
+             <select value={item.color} id="changeColor" onChange={(event)=>{
                 this.updateItem(item.text, item.check, item.id, event.target.value )
              }}>
                 <option className='default'>default</option>
