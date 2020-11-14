@@ -37,6 +37,7 @@ export default class TodoList extends React.Component {
   readNewItem(){
     let newItem = document.getElementById('todo')
     let newItemText = newItem.value
+    newItem.value = ''
     let newItemColor = document.getElementById('addColor').value
     let newItemCheck = false
     let item = {
@@ -85,7 +86,7 @@ export default class TodoList extends React.Component {
                 event.preventDefault()
                 event.stopPropagation()
                 this.updateItem(event.target.value, item.check, item.id, item.color)
-                }} className={ `todoitem ${item.color}` }/>
+                }} className={ `todoitem ${item.color} ${item.check}` }/>
               <input type="checkbox" checked={item.check} onChange={(event)=>{
                 this.updateItem(item.text, event.target.checked, item.id, item.color)
                }} />
