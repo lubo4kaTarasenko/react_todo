@@ -1,3 +1,5 @@
+import UserApi from '../../services/UserApi';
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -20,21 +22,10 @@ export default class SignUp extends React.Component {
   }
 
   createUser(user){
-    fetch("http://localhost:3001/api/auth",{
-    "method": "POST",
-    "body": JSON.stringify({
-      email: user.email,
-      password: user.password
+    new UserApi().createUserFetch(user).then(response => {
+    this.ifError(response)
+    console.log(response)
     })
-    })
-    .then(response => response.json())
-    .then(response => {
-      this.ifError(response)
-      console.log(response)
-    })
-    .catch(err => {
-      console.log(err);
-    });
   }
 
   ifError(js){

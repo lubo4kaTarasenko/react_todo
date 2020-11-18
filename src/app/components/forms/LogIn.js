@@ -1,3 +1,5 @@
+import UserApi from '../../services/UserApi';
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -19,22 +21,11 @@ export default class LogIn extends React.Component {
     return user
   }
 
-  createUser(user){
-    fetch("http://localhost:3001/api/auth",{
-    "method": "PUT",
-    "body": JSON.stringify({
-      email: user.email,
-      password: user.password
-    })
-    })
-    .then(response => response.json())
-    .then(response => {
+  createSession(user){
+    new UserApi().createSessionFetch(user).then(response => {
       this.ifError(response)
       console.log(response)
     })
-    .catch(err => {
-      console.log(err);
-    });
   }
 
   ifError(js){
@@ -50,7 +41,7 @@ export default class LogIn extends React.Component {
           <input type='text' id='email'/>
         <p><label for='password'>Password</label></p>
           <input type='text' id='password'/>
-        <p><button id='sign_in' onClick={ ()=>{this.createUser(this.readUser())} }> log in </button></p>
+        <p><button id='sign_in' onClick={ ()=>{this.createSession(this.readUser())} }> log in </button></p>
       </div>  
     )}  
 }
