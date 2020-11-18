@@ -22,9 +22,11 @@ export default class LogIn extends React.Component {
   }
 
   createSession(user){
-    new UserApi().createSessionFetch(user).then(response => {
+    let api = new UserApi()
+    api.createSessionFetch(user).then(response => {
       this.ifError(response)
       console.log(response)
+      api.userTokenSave(response.token)
     })
   }
 

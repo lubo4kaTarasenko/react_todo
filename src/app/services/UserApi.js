@@ -27,4 +27,12 @@ export default class UserApi{
       console.log(err);
     });
   }
+
+  userTokenSave(token){
+    localStorage.setItem('token', token)
+  }
+
+  userTokenPresent(){
+    return localStorage.getItem('token')
+  }
 }

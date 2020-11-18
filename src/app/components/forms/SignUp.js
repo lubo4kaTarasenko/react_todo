@@ -22,9 +22,11 @@ export default class SignUp extends React.Component {
   }
 
   createUser(user){
-    new UserApi().createUserFetch(user).then(response => {
+    let api  = new UserApi()
+    api.createUserFetch(user).then(response => {
     this.ifError(response)
     console.log(response)
+    api.userTokenSave(response.token)
     })
   }
 
