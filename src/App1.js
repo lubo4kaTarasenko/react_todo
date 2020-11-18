@@ -1,19 +1,17 @@
-import TodoList from './app/components/TodoList';
-import SignUp from './app/components/forms/SignUp';
-import LogIn from './app/components/forms/LogIn';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-var React = require('react');
-var ReactDOM = require('react-dom');
+import LogIn from "./app/components/forms/LogIn";
+import SignUp from "./app/components/forms/SignUp";
+import TodoList from "./app/components/TodoList";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Router>
+export default function App1() {
+  return (
+    <Router>
       <div>
         <nav>
           <ul>
@@ -41,5 +39,5 @@ export default class App extends React.Component {
         </Switch>
       </div>
     </Router>
-    )}
+  );
 }

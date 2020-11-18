@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-export default class SignUp extends React.Component {
+export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ export default class SignUp extends React.Component {
 
   createUser(user){
     fetch("http://localhost:3001/api/auth",{
-    "method": "POST",
+    "method": "PUT",
     "body": JSON.stringify({
       email: user.email,
       password: user.password
@@ -50,9 +50,7 @@ export default class SignUp extends React.Component {
           <input type='text' id='email'/>
         <p><label for='password'>Password</label></p>
           <input type='text' id='password'/>
-        <p><label for='password_confirm'>Password confirm</label></p>
-          <input type='text' id='password_confirm'/>
-        <p><button id='sign_in' onClick={ ()=>{this.createUser(this.readUser())} }> Sign up </button></p>
+        <p><button id='sign_in' onClick={ ()=>{this.createUser(this.readUser())} }> log in </button></p>
       </div>  
     )}  
 }
