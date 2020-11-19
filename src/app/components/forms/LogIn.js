@@ -27,6 +27,7 @@ export default class LogIn extends React.Component {
       this.ifError(response)
       console.log(response)
       api.userTokenSave(response.token)
+      this.props.afterLoggedIn()
     })
   }
 

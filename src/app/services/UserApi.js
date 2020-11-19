@@ -1,4 +1,4 @@
-export default class UserApi{
+export default class UserApi {
 
   createUserFetch(user){
     return fetch("http://localhost:3001/api/auth",{
@@ -34,5 +34,9 @@ export default class UserApi{
 
   userTokenPresent(){
     return localStorage.getItem('token')
+  }
+
+  deleteSession(){
+    localStorage.removeItem('token')
   }
 }

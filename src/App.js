@@ -7,39 +7,73 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+import UserApi from './app/services/UserApi';
 var React = require('react');
 var ReactDOM = require('react-dom');
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTokenPresent: new UserApi().userTokenPresent()       
+    }
+  }
+  
   render() {
     return (
       <Router>
       <div>
         <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/sign_up">Sign up</Link>
-            </li>
-            <li>
-              <Link to="/log_in">Log in</Link>
-            </li>
-          </ul>
+          {this.renderIfAuth()}
         </nav>
         <Switch>
           <Route path="/sign_up">
-            <SignUp />
+            <SignUp afterLoggedIn={()=>{this.syncToken()}}/>
           </Route>
           <Route path="/log_in">
-            <LogIn />
+            <LogIn afterLoggedIn={()=>{this.syncToken()}}/>
           </Route>
           <Route path="/">
-            <TodoList />
+            {this.state.isTokenPresent && <TodoList />}
           </Route>
         </Switch>
       </div>
     </Router>
     )}
+
+    syncToken(){
+      let isToken = new UserApi().userTokenPresent()
+      this.setState({isTokenPresent: isToken})
+    }
+
+    renderIfAuth(){
+      if (!this.state.isTokenPresent){
+        return(
+          <ul>
+            <li>
+                <Link to="/sign_up">Sign up</Link>
+              </li>
+              <li>
+                <Link to="/log_in">Log in</Link>
+            </li>
+          </ul>
+      )}
+      else{
+        return(
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <a href='/' onClick={(e)=>{
+                e.preventDefault()
+                e.stopPropagation()
+                new UserApi().deleteSession()
+                this.syncToken()
+              }}>log out</a>
+            </li>
+          </ul>
+      )}
+    }    
 }

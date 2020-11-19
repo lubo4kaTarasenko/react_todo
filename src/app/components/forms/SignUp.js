@@ -24,9 +24,10 @@ export default class SignUp extends React.Component {
   createUser(user){
     let api  = new UserApi()
     api.createUserFetch(user).then(response => {
-    this.ifError(response)
-    console.log(response)
-    api.userTokenSave(response.token)
+      this.ifError(response)
+      console.log(response)
+      api.userTokenSave(response.token)
+      this.props.afterLoggedIn()
     })
   }
 
