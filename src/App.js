@@ -5,7 +5,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 import UserApi from './app/services/UserApi';
@@ -29,10 +30,10 @@ export default class App extends React.Component {
         </nav>
         <Switch>
           <Route path="/sign_up">
-            {this.state.isTokenPresent ? null : <SignUp afterLoggedIn={()=>{this.syncToken()}}/> }            
+            {this.state.isTokenPresent ? <Redirect to="/"/> : <SignUp afterLoggedIn={()=>{this.syncToken()}}/> }            
           </Route>
           <Route path="/log_in">
-            {this.state.isTokenPresent ? null : <SignUp afterLoggedIn={()=>{this.syncToken()}}/> }  
+            {this.state.isTokenPresent ? <Redirect to="/"/>  : <LogIn afterLoggedIn={()=>{this.syncToken()}}/> }  
           </Route>
           <Route path="/">
             {this.state.isTokenPresent && <TodoList />}
