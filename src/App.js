@@ -29,10 +29,10 @@ export default class App extends React.Component {
         </nav>
         <Switch>
           <Route path="/sign_up">
-            <SignUp afterLoggedIn={()=>{this.syncToken()}}/>
+            {this.state.isTokenPresent ? null : <SignUp afterLoggedIn={()=>{this.syncToken()}}/> }            
           </Route>
           <Route path="/log_in">
-            <LogIn afterLoggedIn={()=>{this.syncToken()}}/>
+            {this.state.isTokenPresent ? null : <SignUp afterLoggedIn={()=>{this.syncToken()}}/> }  
           </Route>
           <Route path="/">
             {this.state.isTokenPresent && <TodoList />}
