@@ -12,9 +12,9 @@ export default class SignUp extends React.Component {
     }
   }
   readUser(){
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
-    let user ={
+    const email = document.getElementById('email').value
+    const password = this.checkPasswordConfirmationCorrect()
+    const user ={
       email: email,
       password: password
     }
@@ -22,7 +22,8 @@ export default class SignUp extends React.Component {
   }
 
   createUser(user){
-    let api  = new UserApi()
+    if (user.password == null) return;
+    const api  = new UserApi()
     api.createUserFetch(user).then(response => {
       this.ifError(response)
       console.log(response)
@@ -34,6 +35,18 @@ export default class SignUp extends React.Component {
   ifError(js){
     if (js.error){
       alert(js.error)
+    }
+  }
+
+  checkPasswordConfirmationCorrect(){
+    const password = document.getElementById('password').value
+    const password_confirm = document.getElementById('password_confirm').value
+    if (password == password_confirm){
+      return password
+    }
+    else{
+      alert("passwords don't match")
+      return null
     }
   }
   
