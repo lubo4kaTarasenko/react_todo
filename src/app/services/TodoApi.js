@@ -1,7 +1,10 @@
+import UserApi from "./UserApi";
+
 export default class TodoApi{
 
   createFetch(e){
-    return fetch("http://localhost:3001/api/items",{
+    const token = new UserApi().userTokenPresent()
+    return fetch(`http://localhost:3001/api/items?token=${token}`,{
       "method": "POST",
       "body": JSON.stringify({
         text: e.text,
@@ -16,12 +19,14 @@ export default class TodoApi{
   }
 
   readFetch(){
-    return fetch("http://localhost:3001/api/items")
+    const token = new UserApi().userTokenPresent()
+    return fetch(`http://localhost:3001/api/items?token=${token}`)
     .then(res => res.json())
   }
 
   updateFetch(itemText, itemCheck, itemId, itemColor){
-    return fetch("http://localhost:3001/api/items",{
+    const token = new UserApi().userTokenPresent()
+    return fetch(`http://localhost:3001/api/items?token=${token}`,{
     "method": "PUT",
     "body": JSON.stringify({
       id: itemId,
@@ -37,7 +42,8 @@ export default class TodoApi{
   }
 
   deleteFetch(id){
-    return fetch(`http://localhost:3001/api/items?id=${id}`,{
+    const token = new UserApi().userTokenPresent()
+    return fetch(`http://localhost:3001/api/items?token=${token}&id=${id}`,{
       "method": "DELETE"})
      .then(response => response.json())
      .catch(err => {

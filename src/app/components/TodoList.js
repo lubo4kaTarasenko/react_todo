@@ -1,8 +1,8 @@
 import TodoApi from '../services/TodoApi';
 import SelectColor from './SelectColor';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+const React = require('react');
+//var ReactDOM = require('react-dom');
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -35,12 +35,12 @@ export default class TodoList extends React.Component {
   }
 
   readNewItem(){
-    let newItem = document.getElementById('todo')
-    let newItemText = newItem.value
+    const newItem = document.getElementById('todo')
+    const newItemText = newItem.value
     newItem.value = ''
-    let newItemColor = document.getElementById('addColor').value
-    let newItemCheck = false
-    let item = {
+    const newItemColor = document.getElementById('addColor').value
+    const newItemCheck = false
+    const item = {
       text: newItemText,
       color: newItemColor,
       check: newItemCheck

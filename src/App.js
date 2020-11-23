@@ -44,8 +44,8 @@ export default class App extends React.Component {
     )}
 
     syncToken(){
-      let isToken = new UserApi().userTokenPresent()
-      this.setState({isTokenPresent: isToken})
+      const isTokenPresent = new UserApi().userTokenPresent()
+      this.setState({isTokenPresent})
     }
 
     renderIfAuth(){
