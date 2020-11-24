@@ -24,17 +24,18 @@ export default class LogIn extends React.Component {
   createSession(user){
     let api = new UserApi()
     api.createSessionFetch(user).then(response => {
-      this.ifError(response)
+      if(response.error) {
+        this.handleError(response);
+        return;
+      }
       console.log(response)
       api.userTokenSave(response.token)
       this.props.afterLoggedIn()
     })
   }
 
-  ifError(js){
-    if (js.error){
-      alert(js.error)
-    }
+  handleError(js){
+    alert(js.error);
   }
   
   render() {
@@ -43,7 +44,7 @@ export default class LogIn extends React.Component {
         <p><label for='email'>Email</label></p>
           <input type='text' id='email'/>
         <p><label for='password'>Password</label></p>
-          <input type='text' id='password'/>
+          <input type='password' id='password'/>
         <p><button id='sign_in' onClick={ ()=>{this.createSession(this.readUser())} }> log in </button></p>
       </div>  
     )}  
