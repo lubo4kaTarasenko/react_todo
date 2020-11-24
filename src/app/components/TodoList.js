@@ -68,6 +68,12 @@ export default class TodoList extends React.Component {
       console.log(response)
     })
   }
+
+  updateItemOnTextChanged(event, item){
+    event.preventDefault()
+    event.stopPropagation()
+    this.updateItem(event.target.value, item.check, item.id, item.color)
+  }
   
 
   renderList() {
@@ -82,11 +88,8 @@ export default class TodoList extends React.Component {
         <ul id='todolist'>
           {items.map(item => (
             <li key={item.id}>
-              <input defaultValue={item.text} onBlur={(event)=>{
-                event.preventDefault()
-                event.stopPropagation()
-                this.updateItem(event.target.value, item.check, item.id, item.color)
-                }} className={ `todoitem ${item.color} ${item.check}` }/>
+              <input defaultValue={item.text} onBlur={ (event)=>{this.updateItemOnTextChanged(event, item)}}
+               className={ `todoitem ${item.color} ${item.check}` }/>
               <input type="checkbox" checked={item.check} onChange={(event)=>{
                 this.updateItem(item.text, event.target.checked, item.id, item.color)
                }} />
