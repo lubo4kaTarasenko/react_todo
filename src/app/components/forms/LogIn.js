@@ -1,7 +1,5 @@
 import UserApi from '../../services/UserApi';
-
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
 
 export default class LogIn extends React.Component {
   constructor(props) {

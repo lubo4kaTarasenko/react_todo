@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+
 export default class SelectColor extends React.Component {
   render() {
     return (

@@ -10,8 +10,7 @@ import {
 } from "react-router-dom";
 
 import UserApi from './app/services/UserApi';
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -48,6 +47,13 @@ export default class App extends React.Component {
       this.setState({isTokenPresent})
     }
 
+    handleLogOut(event){
+      event.preventDefault()
+      event.stopPropagation()
+      new UserApi().deleteSession()
+      this.syncToken()
+    }
+
     renderIfAuth(){
       if (!this.state.isTokenPresent){
         return(
@@ -67,12 +73,7 @@ export default class App extends React.Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <a href='/' onClick={(e)=>{
-                e.preventDefault()
-                e.stopPropagation()
-                new UserApi().deleteSession()
-                this.syncToken()
-              }}>log out</a>
+              <a href='/' onClick={(event)=>{ this.handleLogOut(event) }}>log out</a>
             </li>
           </ul>
       )}

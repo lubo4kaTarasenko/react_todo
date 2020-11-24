@@ -1,8 +1,6 @@
 import TodoApi from '../services/TodoApi';
 import SelectColor from './SelectColor';
-
-const React = require('react');
-//var ReactDOM = require('react-dom');
+import React from 'react';
 
 export default class TodoList extends React.Component {
   constructor(props) {
