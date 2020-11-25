@@ -1,7 +1,15 @@
 import TodoApi from '../services/TodoApi';
 import SelectColor from './SelectColor';
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import {
+  Checkbox,
+  Button,
+  TextField,
+  Container
+} from '@material-ui/core';
+
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -87,15 +95,15 @@ export default class TodoList extends React.Component {
         <ul id='todolist'>
           {items.map(item => (
             <li key={item.id}>
-              <input defaultValue={item.text} onBlur={ (event)=>{this.updateItemOnTextChanged(event, item)}}
+              <TextField variant="outlined" defaultValue={item.text} onBlur={ (event)=>{this.updateItemOnTextChanged(event, item)}}
                className={ `todoitem ${item.color} ${item.check}` }/>
-              <Checkbox checked={item.check} color={"primary"} onChange={(event)=>{
+              <Checkbox icon={<FavoriteBorder />}  checked={item.check}  checkedIcon={<Favorite />} onChange={(event)=>{
                 this.updateItem(item.text, event.target.checked, item.id, item.color)
                }} />
               <SelectColor value={item.color} onChange={(event)=>{
                 this.updateItem(item.text, item.check, item.id, event.target.value )
               }}></SelectColor>
-              <button className='delete' onClick={()=>{this.deleteItem(item.id)}}>X</button>
+              <Button variant="contained" color="secondary" className='delete' onClick={()=>{this.deleteItem(item.id)}}>X</Button>
             </li>
           ))}
         </ul>
@@ -107,15 +115,14 @@ export default class TodoList extends React.Component {
     return (
       <div>
           <div>
-            <label for='new'>Enter what to do</label>
-            <input type='text' className='task' id='todo'/>
+            <TextField label="Enter what to do:" variant="outlined"  className='task' id='todo'/>
             <SelectColor id={'addColor'}></SelectColor>
-            <button id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </button>
+            <Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button>
           </div>
-          <div id='list'>
+          <Container maxWidth="sm" id='list'>
             <h1>Your todos</h1>
             { this.renderList() }
-          </div>
+          </Container>
       </div>  
     )}  
 }
