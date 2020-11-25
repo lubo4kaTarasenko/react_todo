@@ -1,6 +1,7 @@
 import TodoApi from '../services/TodoApi';
 import SelectColor from './SelectColor';
 import React from 'react';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -88,7 +89,7 @@ export default class TodoList extends React.Component {
             <li key={item.id}>
               <input defaultValue={item.text} onBlur={ (event)=>{this.updateItemOnTextChanged(event, item)}}
                className={ `todoitem ${item.color} ${item.check}` }/>
-              <input type="checkbox" checked={item.check} onChange={(event)=>{
+              <Checkbox checked={item.check} color={"primary"} onChange={(event)=>{
                 this.updateItem(item.text, event.target.checked, item.id, item.color)
                }} />
               <SelectColor value={item.color} onChange={(event)=>{
