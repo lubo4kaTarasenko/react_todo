@@ -104,7 +104,7 @@ export default class TodoList extends React.Component {
                 this.updateItem(item.text, item.check, item.id, event.target.value )
               }}></SelectColor>
               <span class='margins'>
-              <Button variant="contained" color="secondary" className='delete' onClick={()=>{this.deleteItem(item.id)}}>X</Button>
+              <Button variant="contained" color="secondary" className='delete' onClick={()=>{this.deleteItem(item.id)}}>Delete</Button>
               </span>
             </li>
           ))}
@@ -116,7 +116,7 @@ export default class TodoList extends React.Component {
   render() {
     return (
       <div>
-          <Container>
+          <Container id='create_cont'>
             <TextField label="Enter what to do:" variant="outlined"  className='task' id='todo'/>
             <span class='margins'><SelectColor id={'addColor'}></SelectColor></span>
             <span class='margins'><Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button></span>

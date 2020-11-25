@@ -16,9 +16,20 @@ code {
   list-style-type: none;
 }
 .margins{
-  margin-left: 2%;
+  margin-left: 4%;
+}
+#main a {
+  color: white;
+  text-decoration: none;
+}
+#main h1{
+  margin-left: 3%;
 }
 
+#main #create_cont{
+  margin-top: 3%;
+  margin-left: 4%;
+}
 #main .red{
   background-color: #ff6666;
 }
@@ -41,5 +52,5 @@ code {
 
 .true{
   text-decoration: line-through;
-  text-decoration-color: aqua;
+  text-decoration-color:black;
 }
