@@ -7,7 +7,9 @@ import {
 export default class SelectColor extends React.Component {
   render() {
     return (
-      <Select id={this.props.id} value={this.props.value || "default"} onChange={ this.props.onChange } variant={'outlined'}>
+      <Select id={this.props.id} value={this.props.value || "default"}  
+        className={`${this.props.value || "default"} todo_select`}
+        onChange={ this.props.onChange } variant={'outlined'}>
         <MenuItem value={'default'} className='default'>default</MenuItem>
         <MenuItem value={'red'} className='red'>red</MenuItem>
         <MenuItem value={'green'} className='green'>green</MenuItem>

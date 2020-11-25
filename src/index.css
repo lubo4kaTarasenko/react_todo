@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 5%;
 }
 
 code {
@@ -13,27 +12,33 @@ code {
     monospace;
 }
 #todolist li{
-  margin: 2%;
+  margin-bottom: 2%;
+  list-style-type: none;
 }
-select{
-  margin: 2%;
-}
-.red{
-  background: #ff6666;
+.margins{
+  margin-left: 2%;
 }
 
-.green{
+#main .red{
+  background-color: #ff6666;
+}
+
+#main .green{
   background: #66ff66;
 }
-.blue{
+#main .blue{
   background: #668cff;
 }
-.purpure{
+#main .purpure{
   background: #d98cd9;
 }
-.yellow{
+#main .yellow{
   background:#ffff66;
 }
+#main .todo_select {
+  width: 200px;
+}
+
 .true{
   text-decoration: line-through;
   text-decoration-color: aqua;

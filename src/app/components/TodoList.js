@@ -103,7 +103,9 @@ export default class TodoList extends React.Component {
               <SelectColor value={item.color} onChange={(event)=>{
                 this.updateItem(item.text, item.check, item.id, event.target.value )
               }}></SelectColor>
+              <span class='margins'>
               <Button variant="contained" color="secondary" className='delete' onClick={()=>{this.deleteItem(item.id)}}>X</Button>
+              </span>
             </li>
           ))}
         </ul>
@@ -114,12 +116,12 @@ export default class TodoList extends React.Component {
   render() {
     return (
       <div>
-          <div>
+          <Container>
             <TextField label="Enter what to do:" variant="outlined"  className='task' id='todo'/>
-            <SelectColor id={'addColor'}></SelectColor>
-            <Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button>
-          </div>
-          <Container maxWidth="sm" id='list'>
+            <span class='margins'><SelectColor id={'addColor'}></SelectColor></span>
+            <span class='margins'><Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button></span>
+          </Container>
+          <Container id='list'>
             <h1>Your todos</h1>
             { this.renderList() }
           </Container>

@@ -8,9 +8,14 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import MenuIcon from '@material-ui/icons/Menu';
 
 import UserApi from './app/services/UserApi';
 import React from 'react';
+import {
+  AppBar, Toolbar,   Button,
+  Typography
+} from '@material-ui/core';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,9 +29,11 @@ export default class App extends React.Component {
     return (
       <Router>
       <div>
-        <nav>
+        <AppBar position="static">
+         
           {this.renderIfAuth()}
-        </nav>
+  
+        </AppBar>
         <Switch>
           <Route path="/sign_up">
             {this.state.isTokenPresent ? <Redirect to="/"/> : <SignUp afterLoggedIn={()=>{this.syncToken()}}/> }            
@@ -57,25 +64,20 @@ export default class App extends React.Component {
     renderIfAuth(){
       if (!this.state.isTokenPresent){
         return(
-          <ul>
-            <li>
-                <Link to="/sign_up">Sign up</Link>
-              </li>
-              <li>
-                <Link to="/log_in">Log in</Link>
-            </li>
-          </ul>
+          <Toolbar>  
+   
+            <Link to="/sign_up">Sign up</Link> |   
+            <Link to="/log_in">Log in</Link>            
+            <h3>Todo app</h3>          
+          </Toolbar>       
       )}
       else{
         return(
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <a href='/' onClick={(event)=>{ this.handleLogOut(event) }}>log out</a>
-            </li>
-          </ul>
+          <Toolbar>       
+              <Button ><Link to="/">Home</Link></Button>
+              <Button> <a href='/' onClick={(event)=>{ this.handleLogOut(event) }}>log out</a></Button> 
+            <h3>Todo app</h3> 
+          </Toolbar> 
       )}
     }    
 }
