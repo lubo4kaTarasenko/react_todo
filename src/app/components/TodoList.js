@@ -5,7 +5,8 @@ import {
   Checkbox,
   Button,
   TextField,
-  Container
+  Container,
+  Paper
 } from '@material-ui/core';
 
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
@@ -115,16 +116,16 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-      <div>
-          <Container id='create_cont'>
-            <TextField label="Enter what to do:" variant="outlined"  className='task' id='todo'/>
-            <span class='margins'><SelectColor id={'addColor'}></SelectColor></span>
-            <span class='margins'><Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button></span>
-          </Container>
-          <Container id='list'>
-            <h1>Your todos</h1>
-            { this.renderList() }
-          </Container>
+      <div> 
+        <Paper elevation={3} className='create_cont'>
+          <TextField label="Enter what to do:" variant="outlined"  className='task' id='todo'/>
+          <span class='margins'><SelectColor id={'addColor'}></SelectColor></span>
+          <span class='margins'><Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button></span>
+        </Paper>
+        <Paper elevation={3} className='create_cont' id='list'>
+          <h1>Your todos</h1>
+          { this.renderList() }
+        </Paper>
       </div>  
     )}  
 }

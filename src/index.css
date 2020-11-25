@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #cccccc45;
+  height: 100%;
 }
 
 code {
@@ -26,9 +28,15 @@ code {
   margin-left: 3%;
 }
 
-#main #create_cont{
-  margin-top: 3%;
-  margin-left: 4%;
+#main .create_cont{
+  padding: 1%;
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+#main .nav_cont{
+  width: 50%;
+  margin: auto;
 }
 #main .red{
   background-color: #ff6666;

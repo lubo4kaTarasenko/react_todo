@@ -64,7 +64,7 @@ export default class App extends React.Component {
     renderIfAuth(){
       if (!this.state.isTokenPresent){
         return(
-          <Toolbar>    
+          <Toolbar className='nav_cont'>    
             <Button><Link to="/sign_up">Sign up</Link></Button>
             <Button><Link to="/log_in">Log in</Link></Button>          
             <h3>Todo app</h3>          
@@ -72,8 +72,8 @@ export default class App extends React.Component {
       )}
       else{
         return(
-          <Toolbar>       
-             <span class="margins"> <Button variant='outlined'color='primary.dark'><Link to="/">Home</Link></Button></span>
+          <Toolbar className='nav_cont'>       
+             <Button variant='outlined'color='primary.dark'><Link to="/">Home</Link></Button>
              <span class="margins">  <Button variant='outlined' color='primary.dark'> <a href='/' onClick={(event)=>{ this.handleLogOut(event) }}>log out</a></Button></span>
              <span class="margins"> <h3>Todo app</h3>  </span> 
           </Toolbar> 
