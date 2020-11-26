@@ -1,5 +1,6 @@
 import UserApi from '../../services/UserApi';
 import React from 'react';
+import { Paper, Button, TextField} from '@material-ui/core';
 
 export default class LogIn extends React.Component {
   constructor(props) {
@@ -38,12 +39,12 @@ export default class LogIn extends React.Component {
   
   render() {
     return (
-      <div>
-        <p><label for='email'>Email</label></p>
-          <input type='text' id='email'/>
-        <p><label for='password'>Password</label></p>
-          <input type='password' id='password'/>
-        <p><button id='sign_in' onClick={ ()=>{this.createSession(this.readUser())} }> log in </button></p>
-      </div>  
+      <Paper elevation={3} className='create_cont'>
+        <div className="login_cont">
+          <p><TextField label="Email:"  variant="outlined" id='email'/></p>
+          <p><TextField label="Password:"  variant="outlined" type='password' id='password'/></p>
+          <p><Button variant="contained" color="primary" id='sign_in' onClick={ ()=>{this.createSession(this.readUser())} }> log in </Button></p>
+        </div>
+      </Paper>  
     )}  
 }

@@ -46,7 +46,7 @@ export default class TodoList extends React.Component {
     const newItem = document.getElementById('todo')
     const newItemText = newItem.value
     newItem.value = ''
-    const newItemColor = document.getElementById('addColor').value
+    const newItemColor = document.getElementById('addColor').innerHTML
     const newItemCheck = false
     const item = {
       text: newItemText,
@@ -104,7 +104,7 @@ export default class TodoList extends React.Component {
               <SelectColor value={item.color} onChange={(event)=>{
                 this.updateItem(item.text, item.check, item.id, event.target.value )
               }}></SelectColor>
-              <span class='margins'>
+              <span className='margins'>
               <Button variant="contained" color="secondary" className='delete' onClick={()=>{this.deleteItem(item.id)}}>Delete</Button>
               </span>
             </li>
@@ -119,11 +119,10 @@ export default class TodoList extends React.Component {
       <div> 
         <Paper elevation={3} className='create_cont'>
           <TextField label="Enter what to do:" variant="outlined"  className='task' id='todo'/>
-          <span class='margins'><SelectColor id={'addColor'}></SelectColor></span>
-          <span class='margins'><Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button></span>
+          <span className='margins'><SelectColor id={'addColor'}></SelectColor></span>
+          <span className='margins'><Button variant="outlined" size={'large'} color="primary" id='add' onClick={ ()=>{ this.createNewItem(this.readNewItem()) } }> ADD </Button></span>
         </Paper>
         <Paper elevation={3} className='create_cont' id='list'>
-          <h1>Your todos</h1>
           { this.renderList() }
         </Paper>
       </div>  

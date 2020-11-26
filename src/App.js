@@ -65,17 +65,23 @@ export default class App extends React.Component {
       if (!this.state.isTokenPresent){
         return(
           <Toolbar className='nav_cont'>    
-            <Button><Link to="/sign_up">Sign up</Link></Button>
-            <Button><Link to="/log_in">Log in</Link></Button>          
-            <h3>Todo app</h3>          
+            <h2>Todo app</h2> 
+            <div className='header'> 
+              <Button><Link to="/sign_up">Sign up</Link></Button>
+              &nbsp;&nbsp;
+              <Button><Link to="/log_in">Log in</Link></Button>          
+            </div>         
           </Toolbar>       
       )}
       else{
         return(
-          <Toolbar className='nav_cont'>       
-             <Button variant='outlined'color='primary.dark'><Link to="/">Home</Link></Button>
-             <span class="margins">  <Button variant='outlined' color='primary.dark'> <a href='/' onClick={(event)=>{ this.handleLogOut(event) }}>log out</a></Button></span>
-             <span class="margins"> <h3>Todo app</h3>  </span> 
+          <Toolbar className='nav_cont'> 
+             <h2>Todo app</h2> 
+             <div className='header'>     
+                <Button variant='outlined'color='primary.dark'><Link to="/">Home</Link></Button>
+                &nbsp;&nbsp;
+                <Button variant='outlined' color='primary.dark'> <a href='/' onClick={(event)=>{ this.handleLogOut(event) }}>log out</a></Button>
+             </div>
           </Toolbar> 
       )}
     }    
