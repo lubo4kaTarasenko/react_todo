@@ -5,9 +5,78 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #cccccc45;
+  height: 100%;
 }
-
+@media screen and (max-width: 600px) {
+  #main .create_cont{
+    clear: both;
+    font-size: 1.3em;
+    margin: auto;
+  }
+  #main .todo_select{
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  #main .create_cont{
+    padding: 1%;
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+  }
+  #main .nav_cont{
+    width: 50%;
+    margin: auto;
+  }
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+#main .login_cont{
+  width: 50%;
+  margin: auto;
+}
+#todolist li{
+  margin-left: -6%;
+  margin-bottom: 2%;
+  list-style-type: none;
+}
+.margins{
+  margin-left: 4%;
+}
+#main a {
+  color: white;
+  text-decoration: none;
+}
+#main .header{
+  margin-left: auto;
+  order: 2;
+}
+
+
+#main .red{
+  background-color: #ff6666;
+}
+
+#main .green{
+  background: #66ff66;
+}
+#main .blue{
+  background: #668cff;
+}
+#main .purpure{
+  background: #d98cd9;
+}
+#main .yellow{
+  background:#ffff66;
+}
+#main .todo_select {
+  width: 200px;
+}
+
+.true{
+  text-decoration: line-through;
+  text-decoration-color:black;
 }
